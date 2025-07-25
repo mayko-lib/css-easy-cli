@@ -9,7 +9,7 @@ on:
 
 jobs:
   release:
-    name: Publish Package
+    name: checking package version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
