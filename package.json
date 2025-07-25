@@ -1,6 +1,6 @@
 {
   "name": "css-easy-cli",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "bin": {
     "css-easy-cli": "/bin/index.js"
   },
