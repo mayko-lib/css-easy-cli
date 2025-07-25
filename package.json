@@ -1,0 +1,32 @@
+{
+  "name": "css-easy-cli",
+  "version": "0.0.4",
+  "bin": {
+    "css-easy-cli": "/bin/index.js"
+  },
+  "files": [
+    "index.js",
+    "utils"
+  ],
+  "keywords": [
+    "css",
+    "scaffolding",
+    "template"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start:dev": "npm run watch"
+  },
+  "author": "mayko campos sánchez",
+  "license": "CC-BY-NC-4.0",
+  "description": "de manera rápida se configurará lo necesario para poder usar CSSsculpt",
+  "dependencies": {
+    "@types/node": "^24.0.15",
+    "inquirer": "^12.8.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.8"
+  }
+}

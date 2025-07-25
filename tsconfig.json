@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "outDir": "./bin",         // Dónde se genera el .js
+    "rootDir": "./src",        // De dónde se toma el .ts
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "types": ["node"]
+  },
+  "include": ["src"],          // Aquí defines qué carpeta observar
+  "exclude": ["node_modules", "bin"]
+}
