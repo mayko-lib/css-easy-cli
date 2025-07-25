@@ -2,7 +2,6 @@ import { colorLog } from "../utils/colors/colorMessage";
 import { checkIfExistThisRute, createDir, createFileIfNoExistAndAddTheContent, modifyFileIfExistAndInitTheContent } from "../utils/vs-code/vs-code";
 
 export function css_constructor_init(){
-    colorLog("❌❌❌ NO SE CONFIGURARÁ EL DIRECTORIO .VSCODE ❌❌❌","yellow");
     checkIfExistThisRute('dirCssConstructor').catch(()=>{
         createDir('dirCssConstructor').catch(()=>{
             throw new Error("NO_DIRECTORY_CREATED")

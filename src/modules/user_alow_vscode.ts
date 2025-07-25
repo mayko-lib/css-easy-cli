@@ -2,7 +2,6 @@ import { colorLog } from "../utils/colors/colorMessage";
 import { checkIfExistThisRute, createDir, createFileIfNoExistAndAddTheContent, modifyFileIfExistAndInitTheContent } from "../utils/vs-code/vs-code";
 
 export function user_allow_modify_vscode(){
-        colorLog("✔️ SE CONFIGURARÁ EL DIRECTORIO .VSCODE ✔️","green");
         checkIfExistThisRute('dirVsCodeConfig').then(()=>colorLog("el directorio vscode ya existe","yellow"))
         .catch(()=>{
             colorLog("   se creará el directorio .vscode","yellow")
