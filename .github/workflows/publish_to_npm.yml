@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main # Dispara el workflow cuando se fusionen cambios a la rama 'main' (ej. vía pull request)
-  workflow_dispatch: # Permite disparar el workflow manualmente desde la interfaz de GitHub
 
 jobs:
   publish:
@@ -26,7 +25,7 @@ jobs:
     - name: Install dependencies # Instala las dependencias de tu proyecto
       run: npm ci # Usa 'npm ci' para instalaciones limpias y reproducibles
 
-      
+
     - name: Build project (if applicable) # Si tu librería necesita ser construida, añade este paso
       run: npm run build # Asegúrate de tener un script 'build' en tu package.json
 
