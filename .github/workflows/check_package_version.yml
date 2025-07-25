@@ -28,7 +28,9 @@ jobs:
           echo "Current version in package.json: $CURRENT_VERSION"
           echo "Latest published version in NPM: $PUBLISHED_VERSION"
 
-          if npx semver "$CURRENT_VERSION" -le "$PUBLISHED_VERSION"; then
-            echo "❌ Error: Version must be greater than published version"
-            exit 1
+          if npx semver "$CURRENT_VERSION" -r ">$PUBLISHED_VERSION"; then
+            echo "✅ Version is valid."
+          else
+            echo "❌ Error: version must be greater than published version"
+          exit 1
           fi
