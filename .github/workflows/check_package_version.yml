@@ -15,11 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
       # Use this GitHub Action
       - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_DISABLED: 1
-      
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME" version)
+
+          echo "Current version in package.json: $CURRENT_VERSION"
+          echo "Latest published version in NPM: $PUBLISHED_VERSION"
+
+          if npx semver "$CURRENT_VERSION" -le "$PUBLISHED_VERSION"; then
+            echo "❌ Error: Version must be greater than published version"
+            exit 1
+          fi
