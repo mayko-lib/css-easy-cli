@@ -5,8 +5,10 @@
     "css-easy-cli": "/bin/index.js"
   },
   "files": [
-    "index.js",
-    "utils"
+    "bin/",
+    "package.json",
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "css",

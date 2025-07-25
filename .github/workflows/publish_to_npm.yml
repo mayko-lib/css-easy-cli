@@ -1,0 +1,39 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main # Dispara el workflow cuando se haga push a la rama 'main'
+  pull_request:
+    branches:
+      - main # Dispara el workflow cuando se fusionen cambios a la rama 'main' (ej. vía pull request)
+  workflow_dispatch: # Permite disparar el workflow manualmente desde la interfaz de GitHub
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest # Ejecuta el job en un entorno Ubuntu
+
+    steps:
+    - name: CLONACION DEL REPOSITORIO EN LA MAQUININA # Paso para clonar tu repositorio
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js # Configura Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*' # Puedes especificar una versión específica, ej. '18.x' o '20.x'
+        registry-url: 'https://registry.npmjs.org/' # Configura la URL del registro de NPM
+
+    - name: Install dependencies # Instala las dependencias de tu proyecto
+      run: npm ci # Usa 'npm ci' para instalaciones limpias y reproducibles
+
+      
+    - name: Build project (if applicable) # Si tu librería necesita ser construida, añade este paso
+      run: npm run build # Asegúrate de tener un script 'build' en tu package.json
+
+    - name: Authenticate with NPM # Autentica con NPM usando el token
+      run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+
+    - name: Publish to NPM # Publica tu paquete
+      run: npm publish --access public # '--access public' si es un paquete público. Si es privado, omítelo o usa '--access restricted'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Asegura que el token se use para la publicación

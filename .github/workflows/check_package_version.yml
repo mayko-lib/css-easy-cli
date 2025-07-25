@@ -1,0 +1,25 @@
+name: CHECK_PACKAGE_VERSION_BEFORE_UPDATE_MAIN
+on:
+  push:
+    branches:
+      - main # Dispara el workflow cuando se hace push a la rama 'main'
+  pull_request:
+    branches:
+      - main # Dispara el workflow cuando se abre/actualiza un Pull Request hacia 'main'
+
+jobs:
+  release:
+    name: Publish Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Use this GitHub Action
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
+      
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
